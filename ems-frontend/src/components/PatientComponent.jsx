@@ -72,7 +72,8 @@ const PatientComponent = () => {
                     navigator('/patients');
                 }).catch(error => {
                     console.error(error);
-                }) }
+                }) 
+            }
              else{
                     createPatient(patient).then((response) => {
                         console.log(response.data);
@@ -113,14 +114,14 @@ const PatientComponent = () => {
             valid = false;
         }
 
-        if(age.trim()){
+        if(String(age).trim()){
             errorsCopy.age = '';
         } else{
             errorsCopy.age = 'Age is required';
             valid = false;
         }
 
-        if(contactNo.trim()){
+        if(String(contactNo).trim()){
             errorsCopy.contactNo = '';
         } else{
             errorsCopy.contactNo = 'Contact No is required';

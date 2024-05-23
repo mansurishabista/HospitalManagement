@@ -11,3 +11,4 @@ export const getPatient = (patientId) => axios.get(REST_API_BASE_URL + '/' + pat
 
 export const updatePatient = (patientId, patient) => axios.put(REST_API_BASE_URL + '/' + patientId, patient);
 
+export const deletePatient = (patientId) => axios.delete(REST_API_BASE_URL + '/' + patientId);

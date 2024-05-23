@@ -28,6 +28,11 @@ const ListPatientComponent = () => {
         navigator(`/update-patient/${id}`)
      }
 
+     function removePatient(id){
+        console.log(id);
+
+     }
+
    
   return (
 
@@ -69,8 +74,13 @@ const ListPatientComponent = () => {
                             <td>{patient.age}</td>
                             <td>{patient.basicSymptoms}</td>
                             <td>
+                                
                                 <button className = 'btn btn-info' onClick={() => updatePatient(patient.id)}>Update</button>
+                            <button className = 'btn btn-danger' onChange={() => removePatient(patient.id)}> Delete</button>
+
+
                             </td>
+
 
                         </tr>
 
