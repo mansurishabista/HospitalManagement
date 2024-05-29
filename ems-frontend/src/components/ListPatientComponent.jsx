@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {listPatients}  from '../services/PatientService'
+import {listPatients, deletePatient }  from '../services/PatientService'
 import {useNavigate} from 'react-router-dom'
 
 const ListPatientComponent = () => {
@@ -8,6 +8,12 @@ const ListPatientComponent = () => {
      const navigator = useNavigate();
 
      useEffect(() => {
+        
+        getAllPatients();
+     }, [])
+
+     function getAllPatients(){
+
         listPatients().then((response) => {
             setPatients(response.data);
             console.log(response.data);
@@ -15,7 +21,7 @@ const ListPatientComponent = () => {
             console.error(error);
 
         })
-     }, [])
+     }
 
      function addNewPatient(){
       navigator ('/add-patient');
@@ -30,6 +36,12 @@ const ListPatientComponent = () => {
 
      function removePatient(id){
         console.log(id);
+       // console.log('Delete patient is called');
+       deletePatient(id).then((response) =>{
+         getAllPatients();
+       }).catch(error =>{
+        console.error(error);
+       })
 
      }
 
@@ -76,7 +88,7 @@ const ListPatientComponent = () => {
                             <td>
                                 
                                 <button className = 'btn btn-info' onClick={() => updatePatient(patient.id)}>Update</button>
-                            <button className = 'btn btn-danger' onChange={() => removePatient(patient.id)}> Delete</button>
+                                <button className = 'btn btn-danger' onClick={() => removePatient(patient.id)}> Delete</button>
 
 
                             </td>

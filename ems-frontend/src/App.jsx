@@ -1,23 +1,29 @@
-
 import './App.css'
 import PatientComponent from './components/PatientComponent'
 import FooterComponent from './components/FooterComponent'
 import HeaderComponents from './components/HeaderComponents'
 import ListPatientComponent from './components/ListPatientComponent'
 import{BrowserRouter, Routes, Route} from 'react-router-dom'
-
+import Home from './components/Home'
+import About from './components/About'
+ 
 function App() {
   
-
+       
+  
   return (
     <>
-
+ 
     <BrowserRouter>
+ 
          <HeaderComponents />
-         <Routes> 
-
+         <Routes>
+ 
+ 
+          <Route path='/' element = { < Home/>}> </Route>
+ 
           {/* // http://localhost:3000*/}
-          <Route path='/' element = { < ListPatientComponent/>}> </Route>
+          <Route path='/lp' element = { < ListPatientComponent/>}> </Route>
           {/* // http://localhost:3000/patients */}
           <Route path ='/patients' element = { < ListPatientComponent/>}> </Route>
           {/* // http://localhost:3000/add-patient */}
@@ -25,7 +31,8 @@ function App() {
            
            {/* // http://localhost:3000/update-patient/1 */}
            <Route path='/update-patient/:id' element = { <PatientComponent /> }> </Route>
-
+ 
+           <Route path= '/about' element = {<About/>}></Route>
          </Routes>
          <FooterComponent/>
      
@@ -36,5 +43,7 @@ function App() {
     </>
   )
 }
-
+ 
 export default App
+ 
+
