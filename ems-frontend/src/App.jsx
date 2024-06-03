@@ -6,6 +6,9 @@ import ListPatientComponent from './components/ListPatientComponent'
 import{BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './components/Home'
 import About from './components/About'
+import Departments from './components/Departments'
+import ListInventory from './components/ListInventory'
+import Inventory from './components/Inventory'
  
 function App() {
   
@@ -24,8 +27,10 @@ function App() {
  
           {/* // http://localhost:3000*/}
           <Route path='/lp' element = { < ListPatientComponent/>}> </Route>
+          
           {/* // http://localhost:3000/patients */}
           <Route path ='/patients' element = { < ListPatientComponent/>}> </Route>
+          
           {/* // http://localhost:3000/add-patient */}
            <Route path = '/add-patient' element = {< PatientComponent/>}> </Route>
            
@@ -33,6 +38,19 @@ function App() {
            <Route path='/update-patient/:id' element = { <PatientComponent /> }> </Route>
  
            <Route path= '/about' element = {<About/>}></Route>
+           
+           <Route path= '/departments' element = {<Departments/>}></Route>
+           
+           <Route path = '/inventory' element = {<ListInventory/>}>  </Route> 
+
+           {/* // http://localhost:3000/add-item */}
+           <Route path = '/add-item' element = {< Inventory/>}> </Route>
+
+           {/* // http://localhost:3000/update-item/shabss */}
+           <Route path='/update-item/:equipment' element = { <Inventory /> }> </Route>
+
+
+          
          </Routes>
          <FooterComponent/>
      

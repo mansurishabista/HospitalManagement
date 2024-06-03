@@ -4,31 +4,30 @@ import "./Home.css";
 
 const Home = () => {
   return (
-    <div>
-      <div>
-        <button>
-          <Link to="/patients">Patient List</Link>
-        </button>
-        <button>Inventory</button>
-        <button>Appointment</button>
-        <button>
-          <Link to="/about">About</Link>
-        </button>
-      </div>
+    <div className = "home-container">
+      <div className = "box-container">
+        
+        <div className = "text-box">
 
-      <div className="box-container">
-        <div className = 'box'>
-          <h1>Words of CEO</h1>
-          <p>he Golden Retriever is a Scottish breed of retriever dog of medium size. It is characterised by a gentle and affectionate nature and a striking golden coat. It is commonly kept as a pet and is among the most frequently registered breeds in several Western countries. It is a frequent competitor in dog shows and obedience trials; it is also used as a gun dog (a type of hunting dog for soft-mouthed retrieving of fowl) and may be trained for use as a guide dog.</p>
+        <h1>Where Compassion Meets Excellence In Healthcare</h1>
+        
+        <h2> Your Health,Our Priority</h2>
+
+        <h3>Services</h3>
+        <p>" From routine check-ups to specialized treatments,We've got you covered "</p>
+        
+        <h3>Emergency Care</h3>
+        <p>" 24/7 Emergency Services: Ready When you Need Us Most "</p>
+
+        <h3>Contact Us</h3>
+        <p> Reach out to us at " jeevandanhms@gmail.com "</p>
         </div>
 
-        <div className = 'box'>
-          <img
-            src="https://www.petsworld.in/blog/wp-content/uploads/2015/06/golden-retriever.jpg"
-            alt="..."
-            className="image"
-          />
+        <div className="image-box">
+          <img src="https://d3nn873nee648n.cloudfront.net/1200x1800-new/14232/SM523309.jpg" alt="....." className="image"/>
+
         </div>
+
       </div>
     </div>
   );

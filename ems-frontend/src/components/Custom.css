@@ -1,0 +1,23 @@
+.custom-navbar{
+background-color: #0097a7 !important;
+padding:0 2rem;
+
+}
+
+.custom-navbar .brand-name{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white !important;
+    margin-right: auto;
+}
+
+.custom-navbar .nav-link{
+    color: white !important;
+    margin-right: 1rem;
+}
+
+.custom-navbar .nav-link:hover{
+    color:#d4f4f6 !important;
+
+
+}

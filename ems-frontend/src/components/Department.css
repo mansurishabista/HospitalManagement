@@ -1,0 +1,35 @@
+.department-page{
+    padding: 20px;
+    font-family: Arial,sans-serif;
+}
+
+
+
+.department-list{
+    list-style-type: none;
+    padding: 0;
+}
+.department-item{
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.department-page h1{
+    margin: 0;
+    font-size: 3.4em;
+    color:#66bfbf ;
+}
+
+.department-item h2{
+    margin: 0;
+    font-size: 1.5em;
+    color:#5585b5;
+
+}
+
+.department-item p{
+    margin: 5px 0 0;
+    color: #79c2d0 ;
+}

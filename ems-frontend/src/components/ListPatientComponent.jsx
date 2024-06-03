@@ -53,9 +53,9 @@ const ListPatientComponent = () => {
         
         
 
-        <h2 className='text-center'> List of Patients</h2>
+        <h1 className='text-center' style = {{color: '#53a8b6'}}> List of Patients</h1>
 
-        <button className= 'btn btn-primary mb-2' onClick = {addNewPatient} > Add Patient</button>
+        <button className= 'btn btn-primary mb-2' style = {{backgroundColor:'#53a8b6'}} onClick = {addNewPatient} > Add Patient</button>
         <table className='table table-stripped table-bordered'>
             <thead>
                 <tr>
@@ -87,8 +87,8 @@ const ListPatientComponent = () => {
                             <td>{patient.basicSymptoms}</td>
                             <td>
                                 
-                                <button className = 'btn btn-info' onClick={() => updatePatient(patient.id)}>Update</button>
-                                <button className = 'btn btn-danger' onClick={() => removePatient(patient.id)}> Delete</button>
+                                <button className = 'btn btn-info' style = {{backgroundColor:'#53a8b6'}} onClick={() => updatePatient(patient.id)}>Update</button>
+                                <button className = 'btn btn-danger' style = {{backgroundColor:'#f95959'}} onClick={() => removePatient(patient.id)}> Delete</button>
 
 
                             </td>
@@ -110,7 +110,7 @@ const ListPatientComponent = () => {
 
 
     </div>
-  )
-}
+  );
+};
 
-export default ListPatientComponent
+export default ListPatientComponent;

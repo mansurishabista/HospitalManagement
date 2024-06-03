@@ -33,7 +33,7 @@ const PatientComponent = () => {
         
         if(id){
 
-            //console.log('bhavesh OP', id)
+            //console.log('Shabista OP', id)
             //debugger;
             getPatient(id).then((response)=> {
                
@@ -322,7 +322,7 @@ const PatientComponent = () => {
 
 
     </div>
-  )
-}
+  );
+};
 
-export default PatientComponent
+export default PatientComponent;
