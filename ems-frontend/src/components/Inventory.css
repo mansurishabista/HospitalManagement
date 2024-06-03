@@ -1,0 +1,19 @@
+.container{
+    margin-top: 2rem;
+}
+
+.card{
+
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0,075);
+}
+
+.bth-success{
+    background-color: #28a745;
+    border: none;;
+}
+
+.bth-success:hover {
+    background-color: 218838;
+}

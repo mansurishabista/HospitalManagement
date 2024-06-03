@@ -2,27 +2,30 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { createInventory, updateInventory} from '../services/InventoryService'
 import { getItem } from '../services/InventoryService';
+import './Inventory.css';
 
 
 const Inventory = () => {
 
-    const [Equipment, setEquipment] = useState('')
+    const [equipment, setEquipment] = useState('')
     const [issuedQuantity, setIssuedQuantity] = useState('')
     const [status, setStatus]= useState('')
     const [unitPrice, setUnitPrice] = useState('')
+    const [errors, setErrors] = useState({})
     
     
-    const {equipment} = useParams();
+    const {equipment: equipmentParam } = useParams();
     
   
-    const navigator = useNavigate();
+    const navigate = useNavigate();
 
     useEffect( () => {
         debugger;
-        if(equipment){
+        if(equipmentParam){
 
-            getItem(equipment).then((response)=> {
-               
+            getItem(equipmentParam).then((response)=> {
+
+                setEquipment(response.data.equipment);
                 setIssuedQuantity(response.data.issuedQuantity);
                 setStatus(response.data.status);
                 setUnitPrice(response.data.unitPrice);
@@ -34,24 +37,40 @@ const Inventory = () => {
             })
         }
 
-    }, [equipment])
+    }, [equipmentParam])
+
+    const validate = () => {
+        let tempErrors = {};
+        if(!equipment) tempErrors.equipment = " Equipment is required";
+        if(!issuedQuantity) tempErrors.issuedQuantity = " It is required";
+        if(!status) tempErrors.status = "status is required";
+        if (!unitPrice) tempErrors.unitPrice = " unit price is required";
+
+        setErrors(tempErrors);
+        return Object.keys(tempErrors).length === 0;
+
+    };
 
 
     function saveOrUpdateItem(e){
-        debugger;
+
+       // debugger;
+        e.preventDefault();
+        if (!validate()) return;
+
         const inventory = {equipment, issuedQuantity, status, unitPrice }
         console.log(inventory)
 
-        if(equipment){
-            updateInventory(equipment, inventory).then((response) => {
+        if(equipmentParam){
+            updateInventory(equipmentParam, inventory).then((response) => {
                  console.log(response.data)
-                navigator('/inventory');
+                navigate('/inventory');
 
             }).catch(error =>{
                 console.error(error);
-                 navigator('/inventory');
+                 navigate('/inventory');
 
-            })
+            });
 
          }
            else{
@@ -59,7 +78,7 @@ const Inventory = () => {
             createInventory(inventory).then((response) => {
                 console.log(response.data);
     
-                navigator('/inventory')
+                navigate('/inventory')
     
             }).catch(error =>{
                 console.error(error);
@@ -71,20 +90,18 @@ const Inventory = () => {
         
     }
 
-    function pageTitle(){
+    const pageTitle = () =>{
 
-        if(equipment){
-            return <h2 className = 'text-center' style = {{color: '#53a8b6'}}>Update Inventory List</h2>
-        }else{
-            return <h2 className = 'text-center' style = {{color: '#53a8b6'}}>Add Item</h2>
-        }
-    }
+        return(
+            <h2>{equipmentParam? "Update Inventory List" : "Add Item"}</h2>
+        );
+    };
 
 
   return (
-    <div className = 'container'>
+    <div className = 'container mt-4 mb-5'>
         <br /> <br />
-        <div className = 'row'>
+        <div className = 'row justify-content-center'>
 
             <div className = 'card col-md-6 offset-md-3 offset-md-3'>
                 {
@@ -92,30 +109,50 @@ const Inventory = () => {
 
                 }
                  <div className = 'card-body'>
-                    <form>
-                        <div className = 'form-group mb-2'>
+                    <form onSubmit = {saveOrUpdateItem}>
+                        <div className = 'form-group mb-3'>
                          <label className = 'form-label'>Name of Equipment </label>
                          <input type="text" placeholder = 'Enter name of equipment' name = 'equipment' value ={equipment} className = 'form-control' onChange = {(e) => setEquipment(e.target.value)}/>
+
+                         {
+                            errors.equipment &&(
+                                <div className = 'text-danger'>{errors.equipment}</div>
+                            )
+                         }
+
                         </div>
 
 
                         <div className = 'form-group mb-2'>
                          <label className = 'form-label'>Issued Quantity </label>
                          <input type="number" placeholder = 'Enter Qty Issued' name = 'isssuedQuantity' value ={issuedQuantity} className = 'form-control' onChange = {(e) => setIssuedQuantity(e.target.value)}/>
+                         
+                         {errors.issuedQuantity&&(
+                            <div className = "text-danger">{errors.isssuedQuantity}</div>
+                         )}
                         </div>
 
 
-                        <div className = 'form-group mb-2'>
+                        <div className = 'form-group mb-3'>
                          <label className = 'form-label'> Status </label>
                          <input type="text" placeholder = 'Enter Status' name = 'status' value ={status} className = 'form-control' onChange = {(e) => setStatus(e.target.value)}/>
+
+                         {errors.status&&(
+                            <div className = "text-danger">{errors.status}</div>
+                         )}
                         </div>
 
 
-                        <div className = 'form-group mb-2'>
+                        <div className = 'form-group mb-3'>
                          <label className = 'form-label'> Unit Price </label>
-                         <input type="nuber" placeholder = 'Enter Price in INR' name = 'unitPrice' value ={unitPrice} className = 'form-control' onChange = {(e) => setUnitPrice(e.target.value)}/>
+                         <input type="number" placeholder = 'Enter Price in INR' name = 'unitPrice' value ={unitPrice} className = 'form-control' onChange = {(e) => setUnitPrice(e.target.value)}/>
+
+                         {errors.unitPrice &&(
+                            <div className = "text-danger">{errors.unitPrice}</div>
+                         )}
+
                         </div>
-                        <button className = 'btn btn-success' onClick = {saveOrUpdateItem}>Submit</button>
+                        <button className = 'btn btn-success'>Submit</button>
                     </form>
 
                  </div>
@@ -128,4 +165,4 @@ const Inventory = () => {
   )
 }
 
-export default Inventory
+export default Inventory;

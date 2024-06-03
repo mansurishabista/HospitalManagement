@@ -34,9 +34,6 @@ const HeaderComponents = () => {
             <Nav.Link> Inventory</Nav.Link>
           </LinkContainer>
 
-          <LinkContainer to="/appointment">
-            <Nav.Link>Appointment</Nav.Link>
-          </LinkContainer>
 
           <LinkContainer to="/departments">
             <Nav.Link>Departments</Nav.Link>
