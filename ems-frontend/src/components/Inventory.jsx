@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { createInventory, updateInventory} from '../services/InventoryService'
 import { getItem } from '../services/InventoryService';
+
+
 const Inventory = () => {
 
     const [Equipment, setEquipment] = useState('')
@@ -51,7 +53,8 @@ const Inventory = () => {
 
             })
 
-        }else{
+         }
+           else{
          
             createInventory(inventory).then((response) => {
                 console.log(response.data);
@@ -71,9 +74,9 @@ const Inventory = () => {
     function pageTitle(){
 
         if(equipment){
-            return <h2 className = 'text-center'>Update Inventory List</h2>
+            return <h2 className = 'text-center' style = {{color: '#53a8b6'}}>Update Inventory List</h2>
         }else{
-            return <h2 className = 'text-center'>Add Item</h2>
+            return <h2 className = 'text-center' style = {{color: '#53a8b6'}}>Add Item</h2>
         }
     }
 

@@ -49,7 +49,7 @@ const ListInventory = () => {
      
   return (
     <div className='container'>
-     <h2 className = 'text-center'>Inevntory</h2> 
+     <h2 className = 'text-center' style = {{color: '#53a8b6'}} > Inventory</h2> 
      <button className= 'btn btn-primary mb-2' style = {{backgroundColor:'#53a8b6'}} onClick = {addNewItem} > New Item </button>
      <table className = 'table table-striped table-bordered'>
         <thead>
@@ -68,6 +68,7 @@ const ListInventory = () => {
 
                 inventory.map(inventory => 
                     <tr key ={inventory.id}>
+                      
                         <td>{inventory.id}</td>
                         <td>{inventory.equipment}</td>
                         <td>{inventory.issuedQuantity}</td>
