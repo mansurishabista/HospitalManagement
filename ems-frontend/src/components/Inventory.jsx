@@ -40,9 +40,10 @@ const Inventory = () => {
     }, [equipmentParam])
 
     const validate = () => {
+        //const unitPricePatt = /^\d+$/;
         let tempErrors = {};
         if(!equipment) tempErrors.equipment = " Equipment is required";
-        if(!issuedQuantity) tempErrors.issuedQuantity = " It is required";
+        if(!issuedQuantity) tempErrors.issuedQuantity = " IssuedQty. is required";
         if(!status) tempErrors.status = "status is required";
         if (!unitPrice) tempErrors.unitPrice = " unit price is required";
 
@@ -93,7 +94,7 @@ const Inventory = () => {
     const pageTitle = () =>{
 
         return(
-            <h2>{equipmentParam? "Update Inventory List" : "Add Item"}</h2>
+            <h2 className = 'text-center' style = {{color: '#53a8b6'}}>{equipmentParam? "Update Inventory List" : "Add Item"}</h2>
         );
     };
 

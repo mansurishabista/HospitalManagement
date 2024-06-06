@@ -1,7 +1,9 @@
 import React, { useState, useEffect} from 'react'
 import { createPatient, getPatient, updatePatient} from '../services/PatientService';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import './flag.css';
 
 
 const PatientComponent = () => {
@@ -154,9 +156,9 @@ const PatientComponent = () => {
     function pageTitle(){
 
         if(id){
-            return <h2 className = 'text-center'>Update Patient</h2>
+            return <h2 className = 'text-center' style = {{color: '#53a8b6'}}>Update Patient</h2>
         }else{
-            return <h2 className = 'text-center'>Add Patient</h2>
+            return <h2 className = 'text-center' style = {{color: '#53a8b6'}}>Add Patient</h2>
         }
     }
 
@@ -250,7 +252,7 @@ const PatientComponent = () => {
                     <div className = 'form-group mb-2'>
                         <label className = 'form-label'> Contact No </label>
 
-                        <input 
+                        {/* <input 
                         
                         type = 'tel'
                         placeholder = 'Enter Patient Contact No'
@@ -259,7 +261,30 @@ const PatientComponent = () => {
                         className = {`form-control ${ errors.contactNo ? 'is-invalid': ''}`}
                         onChange = {(e) => setContactNo(e.target.value)}
                         >
-                        </input>
+                        </input> */}
+
+
+                        <PhoneInput 
+
+                        country = {'India'}
+                        type = 'tel'
+                        //placeholder = 'Enter Patient Contact No'
+                       //name = 'contactNo'
+                        value = {contactNo}
+                        className = {`form-control ${ errors.contactNo ? 'is-invalid': ''}`}
+                        onChange = {phone =>setContactNo(phone)}
+                        inputStyle ={{
+                            width : '100%',
+                            padding: '20px',
+                            fontsize: '16px'
+                        }}
+                        containerStyle ={{
+                            width: '100%'
+                        }}
+                       
+     
+                        >
+                        </PhoneInput>
 
                         {errors.contactNo && <div className = 'invalid-feedback'> { errors.contactNo} </div>}
 

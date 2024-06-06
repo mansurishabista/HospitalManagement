@@ -47,8 +47,8 @@ const ListPatientComponent = () => {
 
    
   return (
-
-
+ 
+    
     <div className='container'>
         
         
@@ -110,6 +110,7 @@ const ListPatientComponent = () => {
 
 
     </div>
+    
   );
 };
 

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { listInventory, getItem, updateInventory, deleteItem} from '../services/InventoryService'
 import {useNavigate} from 'react-router-dom'
+import { FixedSizeList } from 'react-window';
 
 
 
@@ -46,8 +47,10 @@ const ListInventory = () => {
     
    }
     
-     
+     console.log(inventory)
   return (
+
+
     <div className='container'>
      <h2 className = 'text-center' style = {{color: '#53a8b6'}} > Inventory</h2> 
      <button className= 'btn btn-primary mb-2' style = {{backgroundColor:'#53a8b6'}} onClick = {addNewItem} > New Item </button>
@@ -89,9 +92,9 @@ const ListInventory = () => {
         </tbody>
 
      </table>
-      
-
     </div>
+    
+    
   )
 }
 

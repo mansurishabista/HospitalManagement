@@ -30,8 +30,16 @@ const HeaderComponents = () => {
           <Nav.Link> Patient List</Nav.Link>
           </LinkContainer>
 
+          <LinkContainer to="/add-patient">
+          <Nav.Link> Add Patient</Nav.Link>
+          </LinkContainer>
+
           <LinkContainer to="/inventory">
             <Nav.Link> Inventory</Nav.Link>
+          </LinkContainer>
+
+          <LinkContainer to="/add-item">
+            <Nav.Link> Add Item </Nav.Link>
           </LinkContainer>
 
 
