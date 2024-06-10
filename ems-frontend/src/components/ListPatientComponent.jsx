@@ -22,7 +22,7 @@ const ListPatientComponent = () => {
         listPatients().then((response) => {
             setPatients(response.data);
             setLoading(false);
-            console.log(response.data);
+            //console.log(response.data);
         }).catch(error => {
             console.error(error);
             setLoading(false);
@@ -52,13 +52,18 @@ const ListPatientComponent = () => {
 
      }
 
-    //  const handleNameChange = (event) => {
-    //   setNameSearchTerm(event.targe.value);
-    //  }
+     const handleNameChange = (event) => {
+     
+      setNameSearchTerm(event.target.value);
+     }
+
 
      const handleContactNoChange = (event) => {
       setContactNoSearchTerm(event.target.value);
      }
+
+
+    //  console.log(contactNoSearchTerm);
 
     //  const filteredPatients = patients.filter(patient => 
     //   patient.firstname.toLowerCase().includes(nameSearchTerm.toLowerCase()) &&
@@ -71,12 +76,15 @@ const ListPatientComponent = () => {
     // );
   
 
-    // function filteredData(ContactNoSearchTerm, patients) {
-    //   if(!ContactNoSearchTerm){
-    //     return patients;
-    //   }
-    //   return filteredPatients;
-    // }
+    function filteredData(nameSearchTerm, patients) {
+      if(!nameSearchTerm){
+        return patients;
+      }
+      return patients.filter(n => n.firstname.toLowerCase().includes(nameSearchTerm.toLowerCase()));
+    }
+
+    const filterTest = filteredData(nameSearchTerm, patients);
+   console.log(filteredData(nameSearchTerm, patients));
 
      const containerStyle = {
        
@@ -87,31 +95,34 @@ const ListPatientComponent = () => {
     
      }
 
+
+
    
   return (
    <div>
 
-    {/* <input 
+    <input 
     type = "text"
     placeholder = "Enter Name to search"
-    value = {nameSearchTerm}
+    // value = {nameSearchTerm}
     onChange = {handleNameChange}
-    /> */}
+    />
 
-    <input
+    {/* <input
      type="tel" 
      placeholder = " Search by contact No"
-     value = {contactNoSearchTerm}
-     onChange = {handleContactNoChange}
-     />
+    //  value = {contactNoSearchTerm}
 
+     onChange = {handleContactNoChange}
+     /> */}
+
+    
      {/* {loading ? (
       <div>Loading.....</div>
      ) : (
       <ul>
-        {filteredPatients.map(patient => (
+        {filterTest.map(patient => (
           <li key = {patient.id}>
-            <div>Name : {patient.firstname}</div>
             <div>Contact: { patient.contactNo }</div>
 
           </li>
@@ -146,10 +157,16 @@ const ListPatientComponent = () => {
             </tr>
         </thead>
         <tbody>
+        
             {
+
+
+                nameSearchTerm ===""?(
+               
                 patients.map(patient =>
                     <tr
                         key = {patient.id}>
+                    
                         <td>{patient.id}</td>
                         <td>{patient.firstname}</td>
                         <td>{patient.lastname}</td>
@@ -169,11 +186,44 @@ const ListPatientComponent = () => {
 
                     </tr>
 
+                    )):(
+
+                      filterTest.length>0?(
+                      
+
+                      filterTest.map(patient =>
+
+                        <tr
+                            key = {patient.id}>
+                            <td>{patient.id}</td>
+                            <td>{patient.firstname}</td>
+                            <td>{patient.lastname}</td>
+                            <td>{patient.contactNo}</td>
+                            {/* <td>{patient.dob}</td> */}
+                            <td>{patient.gender}</td>
+                            <td>{patient.age}</td>
+                            <td>{patient.basicSymptoms}</td>
+                            <td>
+                                
+                                <button className = 'btn btn-info' style = {{backgroundColor:'#53a8b6'}} onClick={() => updatePatient(patient.id)}>Update</button>
+                                <button className = 'btn btn-danger' style = {{backgroundColor:'#f95959'}} onClick={() => removePatient(patient.id)}> Delete</button>
+    
+    
+                            </td>
+    
+    
+                        </tr> )):(<h1 className='text-center' style = {{color: '#53a8b6'}}> No Such Patient</h1>)
+
+
+
+
+
+
                     )
             }
-          <tr>
+          {/* <tr>
 
-          </tr>
+          </tr> */}
 
         </tbody>
 
