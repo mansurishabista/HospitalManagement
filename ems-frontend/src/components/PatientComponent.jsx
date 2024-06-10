@@ -19,15 +19,15 @@ const PatientComponent = () => {
      const {id} = useParams();
 
     const [errors, setErrors] = useState({
-        firstname: '',
-        lastname: '',
+        firstname:'',
+        lastname:'',
         dob:'',
-        age: '',
-        contactNo: '',
-        gender: '',
+        age:'',
+        contactNo:'',
+        gender:'',
         basicSymptoms :''
     })
-
+    
     const navigator = useNavigate();
 
     useEffect(() => {
@@ -93,42 +93,100 @@ const PatientComponent = () => {
     function validateForm(){
       
         let valid = true;
-        const errorsCopy = {... errors}
+        const errorsCopy = {... errors};
+        const nameRegex = /^[A-Za-z]+$/;
+        const ageRegex = /^\d*\.?\d+$/;
+        
 
         if(firstname.trim()){
-            errorsCopy.firstname = '';
+
+            if(nameRegex.test(firstname)){
+
+                if (firstname.length <= 50){
+
+                    errorsCopy.firstname = "";
+
+                }else{
+                    errorsCopy.firstname = "First name should be maximum 50 Characters long";
+                    valid = false;
+                }
+            }
+            else {
+                errorsCopy.firstname = 'First name should contains letters only';
+             valid = false;
+
+            }   
+
         } else{
-            errorsCopy.firstname = 'First name is required';
+            errorsCopy.firstname = " First name is required";
             valid = false;
         }
 
         if(lastname.trim()){
-            errorsCopy.lastname = '';
+
+            if(nameRegex.test(lastname)){
+
+                if (lastname.length <= 50){
+
+                    errorsCopy.lastname = "";
+
+                }else{
+                    errorsCopy.lastname = "Last name should be maximum 50 Characters long";
+                    valid = false;
+                }
+            }
+            else {
+                errorsCopy.lastname = 'Last name should contains letters only';
+             valid = false;
+
+            }   
+
         } else{
-            errorsCopy.lastname = 'Last name is required';
+            errorsCopy.lastname = " Last name is required";
             valid = false;
         }
 
-        if(dob.trim()){
-            errorsCopy.dob = '';
-        } else{
-            errorsCopy.dob = 'DOB is required';
-            valid = false;
-        }
+
+        // if(dob.trim()){
+        //     errorsCopy.dob = '';
+        // } else{
+        //     errorsCopy.dob = 'DOB is required';
+        //     valid = false;
+        // }
+
+
 
         if(String(age).trim()){
-            errorsCopy.age = '';
-        } else{
+            if(ageRegex.test(age)){
+                if(Number(age) <= 0){
+                    errorsCopy.age = 'Age cannot be negative';
+                    valid = false;
+                }else{
+              errorsCopy.age = '';
+                }
+        }
+        else{
+            errorsCopy.age ='Age must be a positive number';
+            valid = false;
+        }
+            }
+            
+        else{
             errorsCopy.age = 'Age is required';
             valid = false;
         }
 
+
+
         if(String(contactNo).trim()){
-            errorsCopy.contactNo = '';
-        } else{
-            errorsCopy.contactNo = 'Contact No is required';
-            valid = false;
-        }
+            
+             errorsCopy.contactNo = '';
+         } else{
+             errorsCopy.contactNo = 'Contact No is required';
+             valid = false;
+         }
+
+
 
         if(gender.trim()){
             errorsCopy.gender = '';
@@ -137,9 +195,24 @@ const PatientComponent = () => {
             valid = false;
         }
 
+
         if(basicSymptoms.trim()){
-            errorsCopy.basicSymptoms= '';
-        } else{
+            
+            if(nameRegex.test(basicSymptoms)){
+
+                if (basicSymptoms.length <= 200){
+
+                    errorsCopy.basicSymptoms = "";
+
+                }else{
+                    errorsCopy.basicSymptoms = "Basic Symptomps should be maximum 200 Characters long";
+                    valid = false;
+                }
+            }
+            
+        } 
+        
+        else{
             errorsCopy.basicSymptoms = 'First name is required';
             valid = false;
         }
@@ -211,7 +284,7 @@ const PatientComponent = () => {
 
                     </div>
 
-                    <div className = 'form-group mb-2'>
+                    {/* <div className = 'form-group mb-2'>
                         <label className = 'form-label'> DOB </label>
 
                         <input 
@@ -227,7 +300,7 @@ const PatientComponent = () => {
 
                         {errors.dob && <div className = 'invalid-feedback'> { errors.dob} </div>}
 
-                    </div>
+                    </div> */}
 
                     <div className = 'form-group mb-2'>
                         <label className = 'form-label'> Age </label>
@@ -252,7 +325,7 @@ const PatientComponent = () => {
                     <div className = 'form-group mb-2'>
                         <label className = 'form-label'> Contact No </label>
 
-                        {/* <input 
+                         {/* <input 
                         
                         type = 'tel'
                         placeholder = 'Enter Patient Contact No'
@@ -261,30 +334,33 @@ const PatientComponent = () => {
                         className = {`form-control ${ errors.contactNo ? 'is-invalid': ''}`}
                         onChange = {(e) => setContactNo(e.target.value)}
                         >
-                        </input> */}
+                        </input>  */}
 
 
-                        <PhoneInput 
+                         <PhoneInput 
 
-                        country = {'India'}
+                        country = {'in'}
+                        containerClass = "phone-input-container"
+                        inputClass = "phone-input"
+                        buttonClass= "flag-button"
                         type = 'tel'
-                        //placeholder = 'Enter Patient Contact No'
-                       //name = 'contactNo'
                         value = {contactNo}
                         className = {`form-control ${ errors.contactNo ? 'is-invalid': ''}`}
-                        onChange = {phone =>setContactNo(phone)}
+                         onChange = {phone => setContactNo(phone)}
+                        //onChange = {(e) => setContactNo(e.target.value)}
+
                         inputStyle ={{
                             width : '100%',
-                            padding: '20px',
-                            fontsize: '16px'
+                            padding: '10px',
+                            fontsize: '16px',
+                            paddingLeft: '30px'
                         }}
                         containerStyle ={{
                             width: '100%'
                         }}
-                       
-     
+                      
                         >
-                        </PhoneInput>
+                        </PhoneInput> 
 
                         {errors.contactNo && <div className = 'invalid-feedback'> { errors.contactNo} </div>}
 
@@ -296,7 +372,7 @@ const PatientComponent = () => {
                     <div className = 'form-group mb-2'>
                         <label className = 'form-label'> Gender </label>
 
-                        <input 
+                        {/* <input 
                         
                         type = 'text'
                         placeholder = 'Enter Patient Gender'
@@ -305,7 +381,19 @@ const PatientComponent = () => {
                         className = {`form-control ${ errors.gender ? 'is-invalid': ''}`}
                         onChange = {(e) => setGender(e.target.value)}
                         >
-                        </input>
+                        </input> */}
+
+                        <select className = "styled-select" class = "form-select" aria-label = "Default select example"
+                           type = 'text'
+                           name = 'gender'
+                           className = {`form-control ${ errors.gender ? 'is-invalid': ''}`}
+                           onChange = {(e) => setGender(e.target.value)}
+                           value = {gender}
+                        > 
+                            <option value="Male">Male </option>
+                            <option value="Female">Female</option>
+                            <option value="Not Prefer to Say">Not prefer to say</option>
+                        </select>
 
                         {errors.gender && <div className = 'invalid-feedback'> { errors.gender} </div>}
 

@@ -3,10 +3,11 @@
     border: 1px solid #ccc !important;
     border-radius: 10px !important;
     padding: 5px !important;
+
 }
 
 .react-tel-input .selected-flag{
-    padding: 100 100px !important;
+    padding: 10 10px !important;
 
 }
 
@@ -19,10 +20,43 @@
 
     background-color: #f9f9f9 !important;
     border: 1px solid#ccc !important;
-    border-radius: 4px !important;
+    border-radius: 3px !important;
 }
 
 .react-tel-input .country-list .country{
     padding: 5px !important;
     font-size: 14px !important;
+}
+
+.styled-select{
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.styled-select:focus{
+    border-color: #66afe9;
+    box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+    outline: none;
+
+}
+
+.phone-input-container{
+    width: 100%;
+}
+
+.phone-input{
+    width: 100%;
+    padding-left: 50px;
+}
+
+.flag-button{
+    position: absolute;
+    left : -8px;
+    top: 10px;
+    /* transform: translateY(-50%); */
 }

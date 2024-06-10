@@ -5,6 +5,8 @@ import { FixedSizeList } from 'react-window';
 
 
 
+
+
 const ListInventory = () => {
     
 
@@ -48,10 +50,25 @@ const ListInventory = () => {
    }
     
      console.log(inventory)
+     
+     const containerStyle = {
+       
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '59vh'
+    
+     }
+
+     
+
   return (
 
+    <div style = {containerStyle}> 
 
-    <div className='container'>
+     {(inventory.length>0)
+     ?
+     <div className='container'>
      <h2 className = 'text-center' style = {{color: '#53a8b6'}} > Inventory</h2> 
      <button className= 'btn btn-primary mb-2' style = {{backgroundColor:'#53a8b6'}} onClick = {addNewItem} > New Item </button>
      <table className = 'table table-striped table-bordered'>
@@ -93,6 +110,14 @@ const ListInventory = () => {
 
      </table>
     </div>
+    :
+    <h1 className = 'text-center' id = "center" style = {{color: '#53a8b6'}} > No Item exist :( </h1>}
+    
+    
+    
+    </div>
+
+    
     
     
   )

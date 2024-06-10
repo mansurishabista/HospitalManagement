@@ -43,9 +43,23 @@ const Inventory = () => {
         //const unitPricePatt = /^\d+$/;
         let tempErrors = {};
         if(!equipment) tempErrors.equipment = " Equipment is required";
+        else if (!/^[A-Za-z\s]+$/.test(equipment))
+            tempErrors.equipment = "Equipment name should contain letters and spaces";
+        else if (equipment.length< 3)
+            tempErrors.equipment = " Equipment name should be at least of 3 characters";
+        else if (equipment.length > 20) 
+            tempErrors.equipment =" Equipment name should not exceed 20 characters";
+
         if(!issuedQuantity) tempErrors.issuedQuantity = " IssuedQty. is required";
+        else if(!/^\d{1,100}$/.test(issuedQuantity)){
+            tempErrors.issuedQuantity = " Issued Quantity should contain numbers only and be maximum 100 character long";
+        }
+
         if(!status) tempErrors.status = "status is required";
+
         if (!unitPrice) tempErrors.unitPrice = " unit price is required";
+        else if (!/^\d*\.?\d+$/.test(unitPrice) || unitPrice <= 0)
+            tempErrors.unitPrice = "Unit price must be a positive number";
 
         setErrors(tempErrors);
         return Object.keys(tempErrors).length === 0;
