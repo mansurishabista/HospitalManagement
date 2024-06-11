@@ -123,11 +123,13 @@ const Inventory = () => {
                    pageTitle()
 
                 }
+
                  <div className = 'card-body'>
                     <form onSubmit = {saveOrUpdateItem}>
                         <div className = 'form-group mb-3'>
                          <label className = 'form-label'>Name of Equipment </label>
-                         <input type="text" placeholder = 'Enter name of equipment' name = 'equipment' value ={equipment} className = 'form-control' onChange = {(e) => setEquipment(e.target.value)}/>
+                         <input type="text" placeholder = 'Enter name of equipment' name = 'equipment' value ={equipment} className = 'form-control' 
+                         onChange = {(e) => setEquipment(e.target.value)}/>
 
                          {
                             errors.equipment &&(
@@ -140,7 +142,8 @@ const Inventory = () => {
 
                         <div className = 'form-group mb-2'>
                          <label className = 'form-label'>Issued Quantity </label>
-                         <input type="number" placeholder = 'Enter Qty Issued' name = 'isssuedQuantity' value ={issuedQuantity} className = 'form-control' onChange = {(e) => setIssuedQuantity(e.target.value)}/>
+                         <input type="number" placeholder = 'Enter Qty Issued' name = 'isssuedQuantity' value ={issuedQuantity} className = 'form-control'
+                          onChange = {(e) => setIssuedQuantity(e.target.value)}/>
                          
                          {errors.issuedQuantity&&(
                             <div className = "text-danger">{errors.isssuedQuantity}</div>
@@ -148,19 +151,43 @@ const Inventory = () => {
                         </div>
 
 
-                        <div className = 'form-group mb-3'>
+                        {/* <div className = 'form-group mb-3'>
                          <label className = 'form-label'> Status </label>
                          <input type="text" placeholder = 'Enter Status' name = 'status' value ={status} className = 'form-control' onChange = {(e) => setStatus(e.target.value)}/>
 
                          {errors.status&&(
                             <div className = "text-danger">{errors.status}</div>
                          )}
+                        </div> */}
+
+
+
+                        <div className = 'form-group mb-2'>
+                        <label className = 'form-label'> Gender </label>
+
+                    <select className = "styled-select" class = "form-select" aria-label = "Default select example"
+                           type = 'text'
+                           name = 'status'
+                           className = {`form-control ${ errors.status ? 'is-invalid': ''}`}
+                           onChange = {(e) => setStatus(e.target.value)}
+                           value = {status}
+                        > 
+                            <option value="Select Status from below list"> Select status from below list </option>
+                            <option value="Approved">Approved </option>
+                            <option value="Denied">Denied</option>
+                            <option value="In_Process">In_Process</option>
+                        </select>
+
+                        {errors.status && <div className = 'invalid-feedback'> { errors.status} </div>}
                         </div>
+
+
 
 
                         <div className = 'form-group mb-3'>
                          <label className = 'form-label'> Unit Price </label>
-                         <input type="number" placeholder = 'Enter Price in INR' name = 'unitPrice' value ={unitPrice} className = 'form-control' onChange = {(e) => setUnitPrice(e.target.value)}/>
+                         <input type="number" placeholder = 'Enter Price in INR' name = 'unitPrice' value ={unitPrice} className = 'form-control' 
+                         onChange = {(e) => setUnitPrice(e.target.value)}/>
 
                          {errors.unitPrice &&(
                             <div className = "text-danger">{errors.unitPrice}</div>

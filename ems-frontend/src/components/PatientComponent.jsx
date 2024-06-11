@@ -213,7 +213,7 @@ const PatientComponent = () => {
         } 
         
         else{
-            errorsCopy.basicSymptoms = 'First name is required';
+            errorsCopy.basicSymptoms = 'Basic Symptoms is required';
             valid = false;
         }
 
@@ -257,7 +257,9 @@ const PatientComponent = () => {
                         name = 'firstname'
                         value = {firstname}
                         className = {`form-control ${ errors.firstname ? 'is-invalid': ''}`}
-                        onChange = {(e) => setfirstname(e.target.value)}
+                        onChange = {(e) => {setfirstname(e.target.value)
+                            errors.firstname='';}
+                        }
                         >
                         </input>
 
@@ -276,7 +278,9 @@ const PatientComponent = () => {
                         name = 'lastname'
                         value = {lastname}
                         className = {`form-control ${ errors.lastname ? 'is-invalid': ''}`}
-                        onChange = {(e) => setlastname(e.target.value)}
+                        onChange = {(e) => {setlastname(e.target.value)
+                            errors.lastname='';}
+                        }
                         >
                         </input>
                         
@@ -312,7 +316,9 @@ const PatientComponent = () => {
                         name = 'age'
                         value = {age}
                         className = {`form-control ${ errors.age ? 'is-invalid': ''}`}
-                        onChange = {(e) => setAge(e.target.value)}
+                        onChange = {(e) => { setAge(e.target.value)
+                               errors.age = '';}
+                           }
                         >
                         </input>
 
@@ -347,6 +353,7 @@ const PatientComponent = () => {
                         value = {contactNo}
                         className = {`form-control ${ errors.contactNo ? 'is-invalid': ''}`}
                          onChange = {phone => setContactNo(phone)}
+                           
                         //onChange = {(e) => setContactNo(e.target.value)}
 
                         inputStyle ={{
@@ -385,14 +392,19 @@ const PatientComponent = () => {
 
                         <select className = "styled-select" class = "form-select" aria-label = "Default select example"
                            type = 'text'
+                           value = {gender}
                            name = 'gender'
                            className = {`form-control ${ errors.gender ? 'is-invalid': ''}`}
-                           onChange = {(e) => setGender(e.target.value)}
-                           value = {gender}
+                           onChange = {(e) => {setGender(e.target.value)
+                            errors.gender = '';
+                           }}
+                           
+                           
                         > 
+                            <option value="Select Gender from below list"> Select gender from below list </option>
                             <option value="Male">Male </option>
                             <option value="Female">Female</option>
-                            <option value="Not Prefer to Say">Not prefer to say</option>
+                            <option value="Others">Others</option>
                         </select>
 
                         {errors.gender && <div className = 'invalid-feedback'> { errors.gender} </div>}
@@ -412,7 +424,9 @@ const PatientComponent = () => {
                         name = 'basicSymptoms'
                         value = {basicSymptoms}
                         className = {`form-control ${ errors.basicSymptoms ? 'is-invalid': ''}`}
-                        onChange = {(e) => setBasicSymptoms(e.target.value)}
+                        onChange = {(e) => {setBasicSymptoms(e.target.value)
+                            errors.basicSymptoms = '';
+                        }}
                         >
                         </input>
 
